@@ -1,0 +1,2 @@
+
+@include("themes/$theme/layout")
