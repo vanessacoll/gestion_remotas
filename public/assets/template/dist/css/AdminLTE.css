@@ -87,7 +87,7 @@ body {
 }
 .content-wrapper {
   min-height: 100%;
-  background-color: #ecf0f5;
+  background-color: #ebf2f7;
   z-index: 800;
 }
 .main-footer {
@@ -307,6 +307,8 @@ a:focus {
 .content-header {
   position: relative;
   padding: 15px 15px 0 15px;
+  text-align:center;
+
 }
 .content-header > h1 {
   margin: 0;
@@ -1726,7 +1728,7 @@ a:focus {
   position: relative;
 }
 .box-header.with-border {
-  border-bottom: 1px solid #f4f4f4;
+  border-bottom: 1px solid #d2d6de;
 }
 .collapsed-box .box-header.with-border {
   border-bottom: none;
@@ -1813,7 +1815,7 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  border-top: 1px solid #f4f4f4;
+  border-top: 1px solid #d2d6de;
   padding: 10px;
   background-color: #ffffff;
 }
@@ -2648,16 +2650,16 @@ a:focus {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  border-top: 1px solid #f4f4f4;
+  border-top: 1px solid #d2d6de;
 }
 .table > thead > tr > th {
-  border-bottom: 2px solid #f4f4f4;
+  border-bottom: 2px solid #d2d6de;
 }
 .table tr td .progress {
   margin-top: 5px;
 }
 .table-bordered {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #d2d6de;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2665,7 +2667,7 @@ a:focus {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #f4f4f4;
+  border: 1px solid #d2d6de;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -4969,6 +4971,8 @@ table.text-center th {
     float: left;
     width: 33.3333333%;
   }
+
+ 
   .table-responsive {
     overflow: auto;
   }
