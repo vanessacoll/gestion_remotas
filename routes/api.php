@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/estacionesclirep/{id_tip}/clientes', [App\Http\Controllers\ReportesController::class, 'bytipcliente']);
