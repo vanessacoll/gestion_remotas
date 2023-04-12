@@ -42,6 +42,11 @@ class RemotaController extends Controller
     return view('remotas.remotas_search',compact('remotas','clientes'));
         }
 
+    public function monitoreo()
+    {
+       return view("remotas.remotas_monitoreo");
+    }
+
     /**
      * Show the form for creating a new resource.
      *
