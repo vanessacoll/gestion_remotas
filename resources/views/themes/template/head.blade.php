@@ -70,7 +70,7 @@
 
   <!-- pantalla inicial -->
 
-<link rel="icon" href="{{asset("assets/$theme/dist/img/logo2.png")}}" type="image/gif" />
+<link rel="shortcut icon" sizes="192x192" href="{{ asset('/assets/images/logo.png') }}">
 
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

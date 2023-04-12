@@ -26,6 +26,8 @@
             @can('historico_remotas')
             <li><a href="{{ route('remotas.index2') }}"><i class="fa fa-share"></i>Informacion de Remotas</a></li>
             @endcan
+
+            <li><a href="{{ route('remotas.monitoreo') }}"><i class="fa fa-share"></i>Monitoreo de Remotas</a></li>
           </ul>
         </li>
 
