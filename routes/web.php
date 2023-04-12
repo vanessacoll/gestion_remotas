@@ -115,6 +115,8 @@ Route::get('/clientes',[App\Http\Controllers\ClienteController::class, 'store'])
 
 Route::get('/remotasbus', [App\Http\Controllers\RemotaController::class, 'index'])->name('remotas.index');
 
+Route::get('/remotas/monitoreo', [App\Http\Controllers\RemotaController::class, 'monitoreo'])->name('remotas.monitoreo');
+
 Route::get('/remotaslis', [App\Http\Controllers\RemotaController::class, 'search'])->name('remotas.search');
 
 Route::get('/remotas/nuevo',[App\Http\Controllers\RemotaController::class, 'create'])
