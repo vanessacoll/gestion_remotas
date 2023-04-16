@@ -1,94 +1,44 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
+@extends('themes.template_dark.template')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@section('content')
 
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
-
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-   <section class="content-header">
-       <h1 >
-       Planes y servicios
-      </h1>
-      <h1 > <small>Registro de planes y servicios</small></h1>
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-<div class="row justify-content-center">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Nuevo Plan</h3>
-            </div>
-            <!-- /.box-header -->
-   <form method="GET" action="{{route("planes.store")}}">
-                @csrf
-            <!-- form start -->
-         
-
-          <div class="box-body">
-          <div class="row">
-          <div class="col-md-12">
-          <div class="form-group">
-                  <label>Nombre</label>
-                    <input required autocomplete="off" name="nombre" class="form-control" type="text" placeholder="Nombre">
-
-                  @error('nombre')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-                     
-           </div>
-           </div>   
-           </div> 
-                       
-            <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button class="btn btn-primary">Guardar</button>
-                <a class="btn btn-primary" href="{{route("planes.index")}}">Cerrar</a>
-              </div>
-
-  </form>
-    </div>
-          <!-- /.box -->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-cloud-download-alt"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Planes y servicios</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Registro de planes y servicios</p>
   </div>
-    </div>
-    
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
 
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+<div class="col-12">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="row flex-between-end">
+        <div class="col-auto align-self-center">
+          <h5 class="mb-0" data-anchor="data-anchor">Nuevo Plan</h5>
+          <p class="mb-0 pt-1 mt-2 mb-0"></p>
+        </div>
+      </div>  
+    </div>
+    <div class="card-body bg-light">
+      <div class="tab-content">
+        <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
+          <form class="row g-3 needs-validation"  method="GET" action="{{route("planes.store")}}">
+            @csrf
+            <div class="col-md-12">
+              <label class="form-label" for="nombres">Nombres</label>
+              <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingrese Nombres" required="" />
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+            </div>         
+            <div class="col-12">  
+             <div class="row flex-between-center">
+             <div class="col-auto"><button class="btn btn-primary">Guardar</button></div>
+             <div class="col-auto"><a class="fs--1 font-sans-serif" href="{{route("planes.index")}}">Cerrar</a></div>
+             </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
