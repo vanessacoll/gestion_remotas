@@ -39,7 +39,7 @@
                   <ul class="nav collapse" id="clientes">
 
                     @can('clientes')
-                    <li class="nav-item"><a class="nav-link" href="{{ route('clientes.index') }}">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('clientes.search') }}">
                         <div class="d-flex align-items-center"><span class="nav-link-text ps-1">Clientes</span></div>
                       </a><!-- more inner pages-->
                     </li>
