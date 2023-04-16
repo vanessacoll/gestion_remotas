@@ -112,14 +112,13 @@ class RemotaController extends Controller
     public function searchlis(Request $request){
 
   $clientes = Cliente::where('cedula',$request->cedula)->first();
-if ($clientes === null) {
-  return redirect()->route("remotas.index2")->with(["messagealert" => "Cliente no existe.. Por favor Verfique."]);
-}else{
-         
-    $remotas = Remota::where('id_cliente',$clientes->id_cliente)->get(); 
-    return view('remotas.remotas_searchlis',compact('remotas','clientes'));
-
-     }
+  $remotas = Remota::where('id_cliente',$clientes->id_cliente)->get(); 
+    
+    if (count($remotas) > 0) {
+        return view('remotas.remotas_searchlis',compact('remotas','clientes'));
+    }else{
+        return redirect()->route("remotas.index2")->with(["messagealert" => "Cliente no posee Remotas asociadas."]);
+    }
  }
 
     /**
