@@ -16,10 +16,17 @@
     <div class="card-header">
       <div class="row flex-between-center">
         <div class="col-auto col-sm-6 col-lg-7">
+          @can('registrar_clientes')
           <a class="btn btn-falcon-default btn-md" href="{{route("clientes.create")}}">
-            <span class="fas fa-users me-md-1"></span
-            ><span class="d-none d-md-inline">Agregar Cliente</span>
+            <span class="fas fa-users me-md-1"></span>
+            <span class="d-none d-md-inline">Agregar Cliente</span>
           </a>
+          @else
+          <a class="btn btn-falcon-default btn-md" href="#" disabled>
+            <span class="fas fa-users me-md-1"></span>
+            <span class="d-none d-md-inline">Agregar Cliente</span>
+          </a>
+          @endcan
         </div>
         <div class="col-auto col-sm-6 col-lg-5">
           <div>
