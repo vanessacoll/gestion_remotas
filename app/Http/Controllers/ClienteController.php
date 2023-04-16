@@ -68,7 +68,7 @@ class ClienteController extends Controller
         $cliente->id_tipcli = $request->id_tipcli;
         $cliente->saveOrFail();
 
-    return redirect()->route("clientes.index")->with(["message" => "Cliente registrado exitosamente"]);
+    return redirect()->route("clientes.search")->with(["message" => "Cliente registrado exitosamente"]);
     
     }
 
@@ -107,15 +107,16 @@ class ClienteController extends Controller
     {
         $this->validator($request->all())->validate();
 
+        $cliente->cedula    = $request->cedula;
         $cliente->nombres   = $request->nombre;
         $cliente->direccion = $request->direccion;
         $cliente->telefono  = $request->telefono;
         $cliente->email     = $request->email;
         $cliente->id_status = $request->id_status;
         $cliente->id_tipcli = $request->id_tipcli;
-        $cliente->saveOrFail();
-    return redirect()->route("clientes.search")->with(["message" => "Cliente actualizado exitosamente",
-    ]);
+        $cliente->saveOrFail(); 
+       
+     return redirect()->route("clientes.search")->with(["message" => "Cliente actualizado exitosamente"]);
     }
 
     /**
@@ -146,7 +147,7 @@ class ClienteController extends Controller
        protected function validator(array $cliente)
     {
         return Validator::make($cliente, [
-  'cedula'     => ['string', 'max:12', 'unique:clientes'],
+  'cedula'     => ['string', 'max:12'],
   'nombre'     => ['required', 'string', 'max:100', ],
   'direccion'  => ['required', 'string', 'max:200', ],
   'telefono'   => ['required' ],

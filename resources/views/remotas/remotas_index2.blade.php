@@ -1,93 +1,59 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
-
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
-
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-       <h1 >
-       Remotas
-      </h1>
-      <h1 > <small>Informacion del Cliente</small></h1>
-    </section>
+@extends('themes.template_dark.template')
     
- @include("themes/$theme/message")
-    <!-- Main content -->
-    <section class="content">
- <div class="row justify-content-center">
-       <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Buscar remotas</h3>
-            </div>
+@section('content')
 
-   <form method="GET" action="{{route("remotas.searchlis",['request' => "cedula"])}}">
-               @csrf
-
-            <!-- form start -->
-           
-          <div class="box-body">
-          <div class="row">
-          <div class="col-md-12">
-           <div class="form-group">
-                  <label>Cliente</label>
-             <select required name="cedula" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
-               @foreach($clientes as $cliente)
-                  <option value="{{$cliente->cedula}}">  {{$cliente->cedula}} - {{$cliente->nombres}} </option>
-              @endforeach
-           </select>
-           </div>
-           </div>
-           </div>   
-           </div> 
-            
-            
-              <div class="box-footer">
-                <button class="btn btn-primary">Buscar</button>
-                <a class="btn btn-primary" href="{{route("home")}}">Cerrar</a>
-              </div>
-
-  </form>
-    </div>
-          <!-- /.box -->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-user-alt"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Remotas</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Historico de Remotas.</p>
   </div>
-    </div>
-    
-    
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
 
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+
+@include('themes.template_dark.messages')
+
+<div class="col-12">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="row flex-between-end">
+        <div class="col-auto align-self-center">
+          <h5 class="mb-0" data-anchor="data-anchor">Buscar Remotas</h5>
+        </div>
+      </div>
+    </div>
+    <div class="card-body bg-light">
+      <div class="tab-content">
+        <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-41c7dce5-cab3-4edd-ac39-b1d15cf196cf" id="dom-41c7dce5-cab3-4edd-ac39-b1d15cf196cf">
+          <form class="row g-3 needs-validation" novalidate="" method="GET" action="{{route("remotas.searchlis",['request' => "cedula"])}}">
+            @csrf
+
+<div class="col-12">
+<label for="organizerSingle">Cliente</label>
+<select class="form-select js-choice" name="cedula" id="organizerSingle" size="1" name="organizerSingle" data-options='{"removeItemButton":true,"placeholder":true}' required="">
+  <option value="">Seleccione</option>
+  @foreach($clientes as $cliente)
+     <option value="{{$cliente->cedula}}">  {{$cliente->cedula}} - {{$cliente->nombres}} </option>
+ @endforeach
+</select>
+<div class="invalid-feedback">Debe seleccionar un cliente.</div>
+</div>
+
+<div class="col-12">
+  <div class="row flex-between-center">
+  <div class="col-auto"><button class="btn btn-primary" type="submit">Buscar</button></div>
+  </div>
+</div>
+
+</form>
+
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    @endsection

@@ -1,119 +1,105 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
+@extends('themes.template_dark.template')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@section('content')
 
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-user-alt"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Clientes</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Listado de Clientes.</p>
+  </div>
+</div>
 
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
+@include('themes.template_dark.messages')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-     <section class="content-header">
-       <h1 >
-       Clientes
-      </h1>
-      <h1 > <small>Listado de Clientes</small></h1>
-    </section>
-
- @include("themes/$theme/message")
-    <!-- Main content -->
-    <section class="content">
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Listado de Clientes</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-               <table id="example1" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
-                <thead>
-                <tr>
-                    <th>cedula</th>
-                    <th>Nombres</th>
-                    <th>Dirección</th>
-                    <th>Telefono</th>
-                    <th>Email</th>
-                    <th>Estatus</th>
-                    <th>Tipo de Cliente</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th></tr>
-                </thead>
-                <tbody>
-               @foreach($clientes as $cliente)
-            <tr>
-                        <td>{{$cliente->cedula}}</td>
-                        <td>{{$cliente->nombres}}</td>
-                        <td>{{$cliente->direccion}}</td>
-                        <td>{{$cliente->telefono}}</td>
-                        <td>{{$cliente->email}}</td>
-                        <td>{{$cliente->status->des_status}}</td>
-                        <td>{{$cliente->tip_cliente->des_tip}}</td>
-                        <td>
-                           @can('editar_clientes')
-                          <a class="btn btn-warning" href="{{route("clientes.edit",['cliente' => $cliente->id_cliente])}}">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            @else
-                            <a class="btn btn-warning" href="#" disabled>
-                                <i class="fa fa-edit"></i>
-                            @endcan
-                        </td>
-                        <td>
-                          @can('borrar_clientes')
-                            <form action="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}" method="get">
-                              @method("delete")
-                                @csrf
-                                <button type="submit" class="btn btn-danger">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                             @else
-                             <a class="btn btn-danger" href="#" disabled>
-                                <i class="fa fa-trash"></i>
-                             @endcan 
-                        </td>
-            </tr>     
-                 @endforeach
-                </tbody>
-            </table>
-            </div>
-            <!-- /.box-body -->
-
+<div class="col-12">
+  <div class="card" id="table" data-list='{"valueNames":["path","name","address","phone","mail","status","type"],"page":10,"pagination":true,"fallback":"pages-table-fallback"}'>
+    <div class="card-header">
+      <div class="row flex-between-center">
+        <div class="col-auto col-sm-6 col-lg-7">
+          <a class="btn btn-falcon-default btn-md" href="{{route("clientes.create")}}">
+            <span class="fas fa-users me-md-1"></span
+            ><span class="d-none d-md-inline">Agregar Cliente</span>
+          </a>
+        </div>
+        <div class="col-auto col-sm-6 col-lg-5">
+          <div>
+            <form>
+              <div class="input-group"><input class="form-control form-control-sm shadow-none search" type="search" placeholder="Search for a page" aria-label="search" /><button class="btn btn-sm btn-outline-secondary border-300 hover-border-secondary"><span class="fa fa-search fs--1"></span></button></div>
+            </form>
           </div>
-          <!-- /.box -->
         </div>
       </div>
-          <a class="btn btn-primary" href="{{route("home")}}">Cerrar</a>
-    
-    </section>
-    <!-- /.content -->
+    </div>
+    <div class="card-body px-0 py-0">
+      <div class="table-responsive scrollbar">
+        <table class="table fs--1 mb-0 overflow-hidden">
+          <thead class="bg-200 text-900">
+            <tr>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="path">cedula</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="name">Nombres</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="address">Dirección</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="phone">Telefono</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="mail">Email</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="status">Estatus</th>
+              <th class="sort pe-1 align-middle white-space-nowrap" data-sort="type">Tipo de Cliente</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="list">
+            @foreach($clientes as $cliente)
+            <tr class="btn-reveal-trigger">
+                        <td class="align-middle white-space-nowrap path">{{$cliente->cedula}}</td>
+                        <td class="align-middle white-space-nowrap name">{{$cliente->nombres}}</td>
+                        <td class="align-middle white-space-nowrap address">{{$cliente->direccion}}</td>
+                        <td class="align-middle white-space-nowrap phone">{{$cliente->telefono}}</td>
+                        <td class="align-middle white-space-nowrap mail">{{$cliente->email}}</td>
+                        <td class="align-middle white-space-nowrap status">{{$cliente->status->des_status}}</td>
+                        <td class="align-middle white-space-nowrap type">{{$cliente->tip_cliente->des_tip}}</td>
+                        <td class="align-middle text-end">
+                          <div class="dropdown font-sans-serif position-static d-inline-block btn-reveal-trigger"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal dropdown-caret-none float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--1"></span></button>
+                            <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
+                              
+                              @can('editar_clientes')
+                              <a class="dropdown-item" href="{{route("clientes.edit",['cliente' => $cliente->id_cliente])}}">Editar</a>
+                              @endcan 
+
+                              @can('borrar_clientes')
+
+                              <a class="dropdown-item text-danger" href="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}" onclick="event.preventDefault();
+                                document.getElementById('delete-form').submit();">Borrar</a>
+                             
+                               <form id="delete-form" action="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}" method="get">
+                                @method("delete")
+                                  @csrf
+                               </form>
+
+                              @endcan 
+                           
+                            </div>
+                          </div>
+                        </td>
+                        
+            </tr>     
+                 @endforeach
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center d-none" id="pages-table-fallback">
+        <p class="fw-bold fs-1 mt-3">No Encontrado</p>
+      </div>
+    </div>
+    <div class="card-footer">
+      <div class="row align-items-center">
+        <div class="pagination d-none"></div>
+        <div class="col">
+          <p class="mb-0 fs--1"><span class="d-none d-sm-inline-block me-2" data-list-info="data-list-info"></span></p>
+        </div>
+        <div class="col-auto d-flex"><button class="btn btn-sm btn-primary" type="button" data-list-pagination="prev"><span>Previous</span></button><button class="btn btn-sm btn-primary px-4 ms-2" type="button" data-list-pagination="next"><span>Next</span></button></div>
+      </div>
+    </div>
   </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
 
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+      
+    
+@endsection
