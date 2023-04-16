@@ -1,6 +1,6 @@
 .login-dark {
     height:650px;
-    background:#475d62 url(/assets/images/internet-satelital-1.jpg);
+    background:#475d62 url(/assets/images/internet_satelital.png);
     background-size:cover;
     position:relative;
   }
@@ -8,7 +8,7 @@
   .login-dark form {
     max-width:320px;
     width:90%;
-    background-color:rgba(0,0,0,0.8);
+    background-color:rgba(0,0,0,0.6);
     padding:40px;
     border-radius:4px;
     transform:translate(-50%, -50%);
