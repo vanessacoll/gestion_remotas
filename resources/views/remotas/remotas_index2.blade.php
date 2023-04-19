@@ -29,7 +29,7 @@
 
 <div class="col-12">
 <label for="organizerSingle">Cliente</label>
-<select class="form-select js-choice" name="cedula" id="organizerSingle" size="1" data-options='{"removeItemButton":true,"placeholder":true}' required="">
+<select class="form-select js-choice" name="cedula" id="organizerSingle" size="1" name="organizerSingle" data-options='{"removeItemButton":true,"placeholder":true}' required="">
   <option value="">Seleccione</option>
   @foreach($clientes as $cliente)
      <option value="{{$cliente->cedula}}">  {{$cliente->cedula}} - {{$cliente->nombres}} </option>

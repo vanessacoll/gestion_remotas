@@ -8,16 +8,6 @@
 
     </div> 
 
-@elseif(Session::has('messageerror'))
-    <div class="col-md-12">
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        {{ Session::get('messageerror') }}
-        <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-    </div>
-
 @elseif(Session::has('messagealert'))
     <div class="col-md-12">
 
