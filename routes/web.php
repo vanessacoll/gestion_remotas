@@ -21,13 +21,13 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
  
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
-   echo Artisan::call('config:clear');
-   echo Artisan::call('config:cache');
-   echo Artisan::call('cache:clear');
-   echo Artisan::call('route:clear');
-   echo Artisan::call('permission:cache-reset');
-})->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
+    echo Artisan::call('permission:cache-reset');
+    })->name('home');
 
 // Rutas del Controlador de Contenciones
 
@@ -114,6 +114,8 @@ Route::get('/clientes',[App\Http\Controllers\ClienteController::class, 'store'])
 // Rutas del Controlador de Remotas
 
 Route::get('/remotasbus', [App\Http\Controllers\RemotaController::class, 'index'])->name('remotas.index');
+
+Route::get('/remotas/monitoreo', [App\Http\Controllers\RemotaController::class, 'monitoreo'])->name('remotas.monitoreo');
 
 Route::get('/remotaslis', [App\Http\Controllers\RemotaController::class, 'search'])->name('remotas.search');
 

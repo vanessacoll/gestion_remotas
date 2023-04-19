@@ -1,171 +1,81 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
+@extends('themes.template_dark.template')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@section('content')
 
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-user-alt"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Clientes</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Actualizar Clientes.</p>
+  </div>
+</div>
 
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
+<div class="col-12">
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-       <h1 >
-       Clientes
-      </h1>
-      <h1 > <small>Registro de clientes</small></h1>
-    </section>
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="row flex-between-end">
+        <div class="col-auto align-self-center">
+          <h5 class="mb-0" data-anchor="data-anchor">Modificar datos de Clientes</h5>
+          <p class="mb-0 pt-1 mt-2 mb-0">Complete todos los datos del siguiente formulario.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body bg-light">
+      <div class="tab-content">
+        <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
+          <form class="row g-3" method="GET" action="{{route("clientes.update",['cliente' => $cliente->id_cliente])}}">
+            @method("PUT")
+                @csrf
+            <div class="col-md-3">
+              <label class="form-label" for="cedulas">Cedula</label>
+              <input class="form-control" value="{{$cliente->cedula}}" id="cedula" name="cedula" type="text" />
+            </div>
+            <div class="col-md-9">
+              <label class="form-label" for="nombres">Nombres</label>
+              <input class="form-control" value="{{$cliente->nombres}}" id="nombre" name="nombre" type="text" placeholder="Ingrese Nombres" />
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="direccion">Direccion</label>
+              <input class="form-control" value="{{$cliente->direccion}}" id="direccion" name="direccion" type="text" />
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="email">Email</label>
+              <input class="form-control" value="{{$cliente->email}}" name="email" id="email" type="email" />
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="telefono">Telefono</label>
+              <input class="form-control" value="{{$cliente->telefono}}" name="telefono" id="telefono" type="text" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="id_status">Estatus</label>
+              <select class="form-select" name="id_status" id="id_status">
+                <option value="">Seleccione</option>
+                @foreach($statuss as $status)
+                <option value="{{$status->id_status}}" @if( $cliente->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="id_tipcli">Tipo de Cliente</label>
+              <select class="form-select" name="id_tipcli" id="id_tipcli">
+                <option value="">Seleccione</option>
+                @foreach($tip_clientes as $tip_cliente)
+                <option value="{{$tip_cliente->id_tip}}" @if( $cliente->id_tipcli === $tip_cliente->id_tip) selected='selected' @endif>  {{$tip_cliente->des_tip}}</option>
+                @endforeach
+              </select>
+            </div>   
 
-    <!-- Main content -->
-    <section class="content">
- <div class="row justify-content-center">
-       <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Actualizar Cliente</h3>
+            <div class="col-12">
+              <div class="row flex-between-center">
+              <div class="col-auto"><button class="btn btn-primary" type="submit">Actualizar</button></div>
+              <div class="col-auto"><a class="fs--1 font-sans-serif" href="{{route("clientes.search")}}">Cerrar</a></div>
+              </div>
             </div>
 
-  <form method="GET" action="{{route("clientes.update",['cliente' => $cliente->id_cliente])}}">
-               @method("PUT")
-                @csrf
-
-            <!-- form start -->
-          <div class="box-body">
-          <div class="row">
-          <div class="col-md-6">
-          <div class="form-group">
-                  <label>Cedula</label>
-                  <input required value="{{$cliente->cedula}}"  autocomplete="off" name="cedula" class="form-control" placeholder="Cedula ..." disabled>
-
-                  @error('cedula')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-          </div>
-          </div>
-          </div>   
-          </div>  
-
-          <div class="box-body">
-          <div class="row">
-          <div class="col-md-12">
-           <div class="form-group">
-                  <label>Nombres</label>
-                  <input required value="{{$cliente->nombres}}"  autocomplete="off" name="nombre" class="form-control" placeholder="Nombres ...">
-
-                  @error('nombre')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-           <div class="form-group">
-                  <label>Dirección</label>
-                  <input required value="{{$cliente->direccion}}"  autocomplete="off" name="direccion" class="form-control" placeholder="Direccion ...">
-
-                  @error('direccion')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           <div class="form-group">
-                  <label>Telefono</label>
-                  <input required value="{{$cliente->telefono}}"  autocomplete="off" name="telefono" class="form-control" data-inputmask='"mask": "(9999) 999-9999"' data-mask placeholder="Telefono ...">
-                  @error('telefono')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>  
-
-           <div class="form-group">
-                  <label>Email</label>
-                  <input required value="{{$cliente->email}}"  autocomplete="off" name="email" class="form-control" placeholder="Email ...">
-
-                  @error('email')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>  
-
-           </div>
-           </div>   
-           </div> 
-            
-            
-             <div class="box-body">
-             <div class="row">
-             <div class="col-md-6">
-             <div class="form-group">
-                <label>Estatus</label>
-     <select required name="id_status" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
-                @foreach($statuss as $status)
-                  <option value="{{$status->id_status}}" @if( $cliente->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}
-                  </option>
-                @endforeach
-     </select>
-              </div> 
-             
-              <div class="form-group">
-                <label>Tipo de Cliente</label>
-     <select required name="id_tipcli" class="form-control select2" style="width: 100%;">
-                   <option value="">Seleccione</option>
-                @foreach($tip_clientes as $tip_cliente)
-                   <option value="{{$tip_cliente->id_tip}}" @if( $cliente->id_tipcli === $tip_cliente->id_tip) selected='selected' @endif>  {{$tip_cliente->des_tip}}</option>
-                @endforeach
-     </select>
-              </div> 
-
-              </div>
-              </div>   
-              </div>   
-            <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button class="btn btn-primary">Guardar</button>
-                <a class="btn btn-primary" href="{{route("clientes.search")}}">Cerrar</a>
-              </div>
-
-  </form>
+          </form>
+        </div>
+      </div>
     </div>
-          <!-- /.box -->
   </div>
-    </div>
-    
-    
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
-
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+@endsection

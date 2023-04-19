@@ -1,274 +1,169 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
+@extends('themes.template_dark.template')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@section('content')
 
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fas fa-hdd"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Remotas</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Actualizar Remotas.</p>
+  </div>
+</div>
 
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-       <h1 >
-       Remotas
-      </h1>
-      <h1 > <small>Actualización de remotas</small></h1>
-    </section>
+@include('themes.template_dark.messages')
 
-    <!-- Main content -->
-    <section class="content">
-<div class="row justify-content-center">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Actualizar Remota</h3>
-            </div>
-            <!-- /.box-header -->
-  <form method="GET" action="{{route("remotas.update",['remota' => $remota->id_remota])}}">
-               @method("PUT")
+<div class="col-12">
+
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="row flex-between-end">
+        <div class="col-auto align-self-center">
+          <h5 class="mb-0" data-anchor="data-anchor">Modificar Datos de Remotas</h5>
+          <p class="mb-0 pt-1 mt-2 mb-0">Complete todos los datos del siguiente formulario.</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body bg-light">
+      <div class="tab-content">
+        <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
+          <form class="row g-3 needs-validation" novalidate="" method="GET" action="{{route("remotas.update",['remota' => $remota->id_remota])}}">
+            @method("PUT")
                 @csrf
-            <!-- form start -->
-           <div class="box-body">
-           <div class="row">
-           <div class="col-md-10">
-           <div class="form-group">
-                <label>Cliente</label>
-     <select name="id_cliente" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
-               @foreach($clientes as $cliente)
-                  <option value="{{$cliente->id_cliente}}"  @if( $cliente->id_cliente === $remota->id_cliente) selected='selected' @endif >  {{$cliente->cedula}} - {{$cliente->nombres}} </option>
-              @endforeach
-     </select>
-            </div> 
+            <div class="col-12">
+              <label for="organizerSingle">Cliente</label>
+              <select class="form-select js-choice" name="id_cliente" id="organizerSingle" size="1" name="organizerSingle" data-options='{"removeItemButton":true,"placeholder":true}' required="">
+                <option value="">Seleccione</option>
+                @foreach($clientes as $cliente)
+                <option value="{{$cliente->id_cliente}}"  @if( $cliente->id_cliente === $remota->id_cliente) selected='selected' @endif >  {{$cliente->cedula}} - {{$cliente->nombres}} </option>
+                @endforeach
+              </select>
+              <div class="invalid-feedback">Debe seleccionar un cliente.</div>
+              </div>
+
+              <div class="col-6">
+                <label class="form-label" for="nombre">Remota</label>
+                <input class="form-control" value="{{$remota->nombre}}" name="nombre" id="nombre" type="text" required="" />
+                <div class="invalid-feedback">Debe ingresar nombre remota.</div>
+              </div>
+
+            <div class="col-6">
+              <label class="form-label" for="serial">Serial</label>
+              <input class="form-control" value="{{$remota->serial}}" name="serial" id="serial" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar serial.</div>
             </div>
-            </div>   
-            </div>    
+            <div class="col-6">
+              <label class="form-label" for="modmodem">Modelo Modem</label>
+              <input class="form-control" value="{{$remota->modmodem}}"  name="modmodem" id="modmodem" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar modelo del modem.</div>
+            </div>
 
-          <div class="box-body">
-          <div class="row">
-          <div class="col-md-12">
+            <div class="col-6">
+              <label class="form-label" for="localidad">Localidad</label>
+              <input class="form-control" value="{{$remota->localidad}}" name="localidad" id="localidad" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar localidad.</div>
+            </div>
 
-            <div class="form-group">
-                  <label>Nombre</label>
-                  <input required value="{{$remota->nombre}}"  autocomplete="off" name="nombre" class="form-control" placeholder="Nombre ...">
+            <div class="col-6">
+              <label class="form-label" for="direccion">Direccion IP</label>
+              <input class="form-control" value="{{$remota->direccion}}"  name="direccion" id="direccion" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar Direccion IP.</div>
+            </div>
 
-                  @error('nombre')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
+            <div class="col-6">
+              <label class="form-label" for="email">Coordenadas</label>
+              <input class="form-control" value="{{$remota->coordenadas}}" name="coordenadas" id="coordenada" type="coordenadas" required="" />
+              <div class="invalid-feedback">Debe ingresar coordenadas.</div>
+            </div>
 
-           <div class="form-group">
-                  <label>Serial</label>
-                  <input required value="{{$remota->serial}}"  autocomplete="off" name="serial" class="form-control" placeholder="Serial ...">
+            <div class="col-6">
+              <label class="form-label" for="antena">Antena</label>
+              <input class="form-control" value="{{$remota->antena}}" name="antena" id="antena" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar Antena.</div>
+            </div>
+            <div class="col-6">
+              <label class="form-label" for="tip_antena">Tipo de Antena</label>
+              <input class="form-control" value="{{$remota->tip_antena}}" name="tip_antena" id="tip_antena" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar tipo de antena.</div>
+            </div>
 
-                  @error('serial')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-           <div class="form-group">
-                  <label>Modelo Modem</label>
-                  <input required value="{{$remota->modmodem}}" autocomplete="off" name="modmodem" class="form-control" placeholder="Modelo ...">
+            <div class="col-6">
+              <label class="form-label" for="buc">BUC (Transmisor)</label>
+              <input class="form-control" value="{{$remota->buc}}" name="buc" id="buc" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar BUC (Transmisor).</div>
+            </div>
 
-                  @error('modmodem')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           <div class="form-group">
-                  <label>Localidad</label>
-                  <input required value="{{$remota->localidad}}" autocomplete="off" name="localidad" class="form-control" placeholder="Localidad ...">
-
-                  @error('localidad')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>  
-
-           <div class="form-group">
-                  <label>Dirección IP</label>
-                  <input required value="{{$remota->direccion}}" autocomplete="off" name="direccion" class="form-control" placeholder="Direccion ...">
-
-                  @error('direccion')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div> 
-
-           <div class="form-group">
-                  <label>Coordenadas</label>
-                  <input required value="{{$remota->coordenadas}}" autocomplete="off" name="coordenadas" class="form-control" placeholder="Coordenadas ...">
-
-                  @error('coordenadas')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           <div class="form-group">
-                  <label>Antena</label>
-                  <input required value="{{$remota->antena}}" autocomplete="off" name="antena" class="form-control" placeholder="Antena ...">
-
-                  @error('antena')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           <div class="form-group">
-                  <label>Tipo de Antena</label>
-                  <input required value="{{$remota->tip_antena}}" autocomplete="off" name="tip_antena" class="form-control" placeholder="Direccion ...">
-
-                  @error('tip_antena')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           <div class="form-group">
-                  <label>BUC (Transmisor)</label>
-                  <input required value="{{$remota->buc}}" autocomplete="off" name="buc" class="form-control" placeholder="BUC ...">
-
-                  @error('buc')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div> 
-
-           <div class="form-group">
-                  <label>LNB (Receptor)</label>
-                  <input required value="{{$remota->lnb}}" autocomplete="off" name="lnb" class="form-control" placeholder="LNB ...">
-
-                  @error('lnb')
-                <span  class="invalid-feedback" role="alert">
-                   <strong>{{ $message }}</strong>
-                </span>
-                  @enderror
-           </div>
-
-           </div>
-           </div>   
-           </div> 
-            
-            
-            <div class="box-body">
-          <div class="row">
-            <div class="col-md-10">
-              <div class="form-group">
-                <label>Plan</label>
-     <select name="id_plan" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
+            <div class="col-6">
+              <label class="form-label" for="lnb">LNB (Receptor)</label>
+              <input class="form-control" value="{{$remota->lnb}}" name="lnb" id="lnb" type="text" required="" />
+              <div class="invalid-feedback">Debe ingresar LNB (Receptor).</div>
+            </div>
+        
+                    
+            <div class="col-md-6">
+              <label class="form-label" for="id_plan">Plan</label>
+              <select class="form-select js-choice" name="id_plan" id="id_plan" required="">
+                <option value="">Seleccione</option>
                 @foreach($planes as $plan)
-                  <option value="{{$plan->id_plan}}" @if( $plan->id_plan === $remota->id_plan) selected='selected' @endif >  {{$plan->des_plan}}
-                  </option>
+                <option value="{{$plan->id_plan}}" @if( $plan->id_plan === $remota->id_plan) selected='selected' @endif >  {{$plan->des_plan}}
+                </option>
                 @endforeach
-     </select>
-              </div> 
-             
-              <div class="form-group">
-                <label>Contencion</label>
-     <select name="id_contencion"class="form-control select2" style="width: 100%;">
-                   <option value="">Seleccione</option>
+              </select>
+              <div class="invalid-feedback">Debe seleccionar plan.</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="id_contencion">Contencion</label>
+              <select class="form-select js-choice" name="id_contencion" id="id_contencion" required="">
+                <option value="">Seleccione</option>
                 @foreach($contenciones as $contencion)
-                   <option value="{{$contencion->id_contencion}}" @if( $contencion->id_contencion === $remota->id_contencion) selected='selected' @endif >  {{$contencion->des_contencion}}</option>
+                 <option value="{{$contencion->id_contencion}}" @if( $contencion->id_contencion === $remota->id_contencion) selected='selected' @endif >  {{$contencion->des_contencion}}</option>
                 @endforeach
-     </select>
-              </div> 
+              </select>
+              <div class="invalid-feedback">Debe seleccionar contencion.</div>
+            </div>
 
-              <div class="form-group">
-                <label>Satelite</label>
-     <select name="id_satelite"class="form-control select2" style="width: 100%;">
-                 <option value="">Seleccione</option>
+            <div class="col-md-6">
+              <label class="form-label" for="id_satelite">Satelite</label>
+              <select class="form-select js-choice" name="id_satelite" id="id_satelite" required="">
+                <option value="">Seleccione</option>
                 @foreach($satelites as $satelite)
-                 <option value="{{$satelite->id_satelite}}" @if( $satelite->id_satelite === $remota->id_satelite) selected='selected' @endif >  {{$satelite->des_satelite}}</option>
+                <option value="{{$satelite->id_satelite}}" @if( $satelite->id_satelite === $remota->id_satelite) selected='selected' @endif >  {{$satelite->des_satelite}}</option>
                 @endforeach
-     </select>
-              </div> 
-
-              <div class="form-group">
-                <label>Estatus</label>
-     <select required name="id_status" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
+              </select>
+              <div class="invalid-feedback">Debe seleccionar satelite.</div>
+            </div>   
+            <div class="col-md-6">
+              <label class="form-label" for="id_status">Estatus</label>
+              <select class="form-select js-choice" name="id_status" id="id_status" required="">
+                <option value="">Seleccione</option>
                 @foreach($statuss as $status)
-                  <option value="{{$status->id_status}}" @if( $remota->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}
-                  </option>
+                <option value="{{$status->id_status}}" @if( $remota->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}
+                </option>
                 @endforeach
-     </select>
-              </div>
-
-              </div>
-              </div>   
-              </div>   
-
-           <div class="box-body">
-           <div class="row">
-           <div class="col-md-10">
-           <div class="form-group">
-                <label>Justificacion</label>
-     <select required name="id_just" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
+              </select>
+              <div class="invalid-feedback">Debe seleccionar Estatus.</div>
+            </div> 
+            <div class="col-md-12">
+              <label class="form-label" for="id_just">Justificacion</label>
+              <select class="form-select js-choice" name="id_just" id="id_just" required="">
+                <option value="">Seleccione</option>
+                <option value="">Seleccione</option>
                @foreach($justificaciones as $justificacion)
                   <option value="{{$justificacion->id_just}}">  {{$justificacion->des_just}}</option>
               @endforeach
-     </select>
-            </div> 
-            </div>
+              </select>
+              <div class="invalid-feedback">Debe seleccionar una justificacion.</div>
             </div>   
-            </div>    
-
-            <!-- /.box-body -->
-
-              <div class="box-footer">
-                <button class="btn btn-primary">Guardar</button>
-                <a class="btn btn-primary" href="{{route("remotas.search")}}">Cerrar</a>
+              <div class="col-12">
+                <div class="row flex-between-center">
+                <div class="col-auto"><button class="btn btn-primary" type="submit">Registrar</button></div>
+                <div class="col-auto"><a class="fs--1 font-sans-serif" href="{{route("remotas.search")}}">Cerrar</a></div>
+                </div>
               </div>
-
-  </form>
+          
+          </form>
+        </div>
+      </div>
     </div>
-          <!-- /.box -->
   </div>
-    </div>
-    
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
-
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+    @endsection

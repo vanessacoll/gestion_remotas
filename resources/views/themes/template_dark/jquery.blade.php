@@ -1,0 +1,15 @@
+    <script src="{{asset("assets/template_dark/js/popper.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/bootstrap.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/anchor.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/is.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/chart.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/countUp.umd.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/echarts.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/dayjs.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/all.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/lodash.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/prism.js")}}"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="{{asset("assets/template_dark/js/list.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/theme.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/choices.min.js")}}"></script>

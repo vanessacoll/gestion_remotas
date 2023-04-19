@@ -42,6 +42,11 @@ class RemotaController extends Controller
     return view('remotas.remotas_search',compact('remotas','clientes'));
         }
 
+    public function monitoreo()
+    {
+       return view("remotas.remotas_monitoreo");
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -84,7 +89,7 @@ class RemotaController extends Controller
         $remota->id_satelite = $request->id_satelite;
         $remota->id_status = $request->id_status;
         $remota->saveOrFail();
-    return redirect()->route("remotas.index")->with(["message" => "Remota registrada exitosamente"]);
+    return redirect()->route("remotas.search")->with(["message" => "Remota registrada exitosamente"]);
     }
 
  /**
@@ -107,14 +112,13 @@ class RemotaController extends Controller
     public function searchlis(Request $request){
 
   $clientes = Cliente::where('cedula',$request->cedula)->first();
-if ($clientes === null) {
-  return redirect()->route("remotas.index2")->with(["messagealert" => "Cliente no existe.. Por favor Verfique."]);
-}else{
-         
-    $remotas = Remota::where('id_cliente',$clientes->id_cliente)->get(); 
-    return view('remotas.remotas_searchlis',compact('remotas','clientes'));
-
-     }
+  $remotas = Remota::where('id_cliente',$clientes->id_cliente)->get(); 
+    
+    if (count($remotas) > 0) {
+        return view('remotas.remotas_searchlis',compact('remotas','clientes'));
+    }else{
+        return redirect()->route("remotas.index2")->with(["messagealert" => "Cliente no posee Remotas asociadas."]);
+    }
  }
 
     /**
@@ -132,15 +136,8 @@ if ($remotas === null) {
     ]);
 }else{
 $clientes = Cliente::where('id_cliente',$remotas->id_cliente)->first(); 
-$statuss = Status::where('id_status',$clientes->id_status)->first(); 
-$tip_clientes = Tip_cliente::where('id_tip',$clientes->id_tipcli)->first(); 
-$planes = Plan::where('id_plan',$remotas->id_plan)->first();
-$contenciones = Contencion::where('id_contencion',$remotas->id_contencion)->first();
-$satelites = Satelite::where('id_satelite',$remotas->id_satelite)->first();
 $hisremotas = Historico_Remota::where('id_remota',$remotas->id_remota)->get();
-$justificaciones = Justificacion::select()->get();
-$statuss = Status::where('id_status',$remotas->id_status)->first();
-    return view('remotas.remotas_show', compact('remotas','clientes','statuss','tip_clientes','planes','contenciones','satelites','hisremotas','justificaciones','statuss'));
+    return view('remotas.remotas_show', compact('remotas','clientes','hisremotas'));
 }
 
     }
