@@ -1,5 +1,5 @@
   $(function () {
-  
+
   $('#select-tipcliente').on('change', onSelectTipClienteChange);
 
   })
@@ -11,7 +11,7 @@ function onSelectTipClienteChange(){
   	$('#select-cliente').html('<option value="">Seleccione</option>');
   	return;
   }
-  
+
 //AJAX
 $.get('/api/estacionesclirep/'+tipcliente_id+'/clientes', function(data) {
 	var html_select = '<option value="">Seleccione</option>';

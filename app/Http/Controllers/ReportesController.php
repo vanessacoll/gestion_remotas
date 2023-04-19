@@ -34,7 +34,7 @@ class ReportesController extends Controller
     public function index2()
     {
        $clientes = Cliente::select()->get();
-       $tip_clientes = Tip_cliente::select()->get(); 
+       $tip_clientes = Tip_cliente::select()->get();
         return view("reportes.reportes_estaciones_cliente", compact('tip_clientes','clientes'));
     }
 
@@ -62,30 +62,35 @@ class ReportesController extends Controller
         }
  }
 
-    $remotas      = Remota::select()->get(); 
-    $statuss      = Status::select()->get(); 
+    $remotas      = Remota::select()->get();
+    $statuss      = Status::select()->get();
     $planes       = Plan::select()->get();
     $contenciones = Contencion::select()->get();
     $satelites    = Satelite::select()->get();
     $tip_clientes = Tip_cliente::where('id_tip',$request->id_tip)->first();
-    return view('reportes.reportes_estaciones_cliente_pdf' , compact('remotas','clientes','statuss','planes','contenciones','satelites','tip_clientes')); 
-   
-    
+    return view('reportes.reportes_estaciones_cliente_pdf' , compact('remotas','clientes','statuss','planes','contenciones','satelites','tip_clientes'));
+
+
 }
 
 public function generar()
     {
-    
+
     $remotas = Remota::select()->get();
     return view('reportes.reportes_listado_estaciones_pdf', compact('remotas'));
-   
-}
-
-public function bytipcliente($id_tip)
-    {
-    
-   return Cliente::where('id_tipcli',$id_tip)->get();
 
 }
 
- }
+public function bytipcliente(Request $request){
+
+
+
+       $clientes = Cliente::where('id_tipcli',$request->id_tip)->get();
+        return response()->json(
+            [
+                'clientes' => $clientes
+            ]
+        );
+}
+
+}
