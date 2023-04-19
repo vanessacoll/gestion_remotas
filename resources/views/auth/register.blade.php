@@ -1,165 +1,136 @@
-<!DOCTYPE html>
-<html>
- <!-- inicio head-->
-  @include("themes/$theme/head")
-  <!-- fin head-->
+@extends('themes.template_dark.template')
 
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
+@section('content')
 
- <!-- inicio header-->
-  @include("themes/$theme/header")
- <!-- fin header-->
+<div class="d-flex mb-4 mt-4"><span class="fa-stack me-2 ms-n1"><i class="fas fa-circle fa-stack-2x text-300"></i><i class="fa-inverse fa-stack-1x text-primary fa fa-laptop"></i></span>
+  <div class="col">
+    <h5 class="mb-0 text-primary position-relative"><span class="bg-200 dark__bg-1100 pe-3">Usuarios</span><span class="border position-absolute top-50 translate-middle-y w-100 start-0 z-index--1"></span></h5>
+    <p class="mb-0">Registro de usuarios</p>
+  </div>
+</div>
 
- <!-- inicio aside-->
-  @include("themes/$theme/aside")
- <!-- fin aside-->
+<div class="col-12">
+  <div class="card mb-3">
+    <div class="card-header">
+      <div class="row flex-between-end">
+        <div class="col-auto align-self-center">
+          <h5 class="mb-0" data-anchor="data-anchor">Nuevo Usuario</h5>
+          <p class="mb-0 pt-1 mt-2 mb-0"></p>
+        </div>
+      </div>  
+    </div>
+    <div class="card-body bg-light">
+      <div class="tab-content">
+        <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
+          <form class="row g-3 needs-validation"  method="POST" action="{{ route('register') }}">
+            @csrf
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-   <section class="content-header">
-       <h1 >
-       Usuarios
-      </h1>
-      <h1 > <small>Registro de usuarios</small></h1>
-    </section>
+            <div class="col-md-12">
+              <label class="form-label" for="nombres">{{ __('Usuario') }}</label>
 
-    <!-- Main content -->
-    <section class="content">
-<div class="row justify-content-center">
-        <!-- left column -->
-        <div class="col-md-6">
-          <!-- general form elements -->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Nuevo Usuario</h3>
-            </div>
-            <!-- /.box-header -->
-   <form method="POST" action="{{ route('register') }}">
-                        @csrf
-<div class="box-body">
-  <div class="row">
-    <div class="col-md-12">
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Usuario') }}</label>
+              <input class="form-control @error('name') is-invalid @enderror" id="nombre" name="name" value="{{ old('name') }}" type="text" placeholder="Usuario" required autocomplete="name" />
 
-                            <div class="col-md-7">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+              @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+             @enderror
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="nombres" class="col-md-4 col-form-label text-md-right">{{ __('Nombres') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="nombres" type="text" class="form-control @error('nombres') is-invalid @enderror" name="nombres" value="{{ old('nombres') }}" required autocomplete="nombres" autofocus>
-
-                                @error('nombres')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Contraseña') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirmar Contraseña') }}</label>
-
-                            <div class="col-md-7">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-        
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+            </div> 
+                 
             
-                <div class="form-group row">
-                <label for="perfil" class="col-md-4 col-form-label text-md-right">{{ __('Perfil') }}</label>
-                <div class="col-md-7">
-     <select required name="name_role" class="form-control select2" style="width: 100%;">
-                  <option value="">Seleccione</option>
-                @foreach($roles as $role)
-                  <option value="{{$role->name}}" >{{$role->name}}
-                  </option>
-                @endforeach
-     </select>
-              </div> 
-              </div>
-                
-             
+            <div class="col-md-12">
 
+              <label class="form-label" for="nombres">{{ __('Nombres') }}</label>
+
+              <input class="form-control @error('nombres') is-invalid @enderror " id="nombre" name="nombres" value="{{ old('nombres') }}" type="text" placeholder="Nombre" required autocomplete="nombres" />
+
+              @error('nombres')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+
+            </div> 
+
+                 
+            <div class="col-md-12">
+
+              <label class="form-label" for="nombres">{{ __('E-Mail') }}</label>
+
+              <input class="form-control @error('email') is-invalid @enderror" id="nombre" name="email" value="{{ old('email') }}" type="email" placeholder="Email" required autocomplete="email" />
+              
+              @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+
+            </div> 
+              
+
+            <div class="col-md-12">
+
+              <label class="form-label" for="nombres">{{ __('Contraseña') }}</label>
+
+              <input class="form-control @error('password') is-invalid @enderror" id="nombre" name="password"  type="password" placeholder="Contraseña" required autocomplete="new-password" />
+             
+              @error('password')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+
+            </div> 
+
+
+            <div class="col-md-12">
+
+              <label class="form-label" for="nombres">{{ __('Confirmar Contraseña') }}</label>
+
+              <input class="form-control" id="nombre" name="password_confirmation" type="password" placeholder="Confirmar contraseña" required autocomplete="new-password" />
+
+              <div class="invalid-feedback">Debe ingresar nombres.</div>
+
+            </div> 
+
+            
+            <div class="col-md-12">
+              <label class="form-label" for="perfil">{{ __('Perfil') }}</label>
+
+              <select class="form-select"  required name="name_role">
+
+                <option value="">Seleccione</option>
+
+                @foreach($roles as $role)
+
+                 <option value="{{$role->name}}">  {{$role->name}}</option>
+
+                @endforeach
+
+              </select>
+
+              <div class="invalid-feedback">Debe seleccionar estatus.</div>
+            </div>
+
+              
+            <div class="col-12">  
+             <div class="row flex-between-center">
+             <div class="col-auto"><button class="btn btn-primary">Guardar</button></div>
+             <div class="col-auto"><a class="fs--1 font-sans-serif" href={{route("register.search")}}>Cerrar</a></div>
+             </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>                    
-
-              <div class="box-footer">
-          
-                       <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Guardar') }}
-                                </button>
-                                <a class="btn btn-primary" href="{{route("register.index")}}">Cerrar</a>
-                            </div>
-                        </div>
-              </div>
-                    </form>
-    </div>
-          <!-- /.box -->
   </div>
-    </div>
-    
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
- 
-
-<!--inicio footer-->
-  @include("themes/$theme/footer")
-<!-- fin footer -->
-
-  <div class="control-sidebar-bg"></div>
-
 </div>
-<!-- ./wrapper -->
-
-<!-- inicio jQuery 3 -->
-  @include("themes/$theme/jquery")
-<!-- fin jQuery 3 -->
-</body>
-</html>
+@endsection

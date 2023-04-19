@@ -112,7 +112,7 @@
                   </div>
 
                   @can('registrar_usuarios')
-                  <a class="nav-link" href="{{ route('register.index') }}" role="button">
+                  <a class="nav-link" href="{{route("register.search")}}" role="button">
                     <div class="d-flex align-items-center"><span class="nav-link-icon"><span class="fa fa-laptop"></span></span><span class="nav-link-text ps-1">Registro de Usuarios</span></div>
                   </a>
                   @endcan

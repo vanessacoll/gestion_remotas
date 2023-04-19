@@ -21,13 +21,13 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
  
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
-   echo Artisan::call('config:clear');
-   echo Artisan::call('config:cache');
-   echo Artisan::call('cache:clear');
-   echo Artisan::call('route:clear');
-   echo Artisan::call('permission:cache-reset');
-})->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
+    echo Artisan::call('permission:cache-reset');
+    })->name('home');
 
 // Rutas del Controlador de Contenciones
 
