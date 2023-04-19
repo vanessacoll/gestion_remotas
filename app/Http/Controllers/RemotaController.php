@@ -15,6 +15,9 @@ use App\Models\Tip_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Acamposm\Ping\Ping;
+use Acamposm\Ping\PingCommandBuilder;
+
 
 
 class RemotaController extends Controller
@@ -38,13 +41,21 @@ class RemotaController extends Controller
     public function search(){
          
     $remotas = Remota::all()->sortBy('id_remota');
-    $clientes = Cliente::select()->get(); 
-    return view('remotas.remotas_search',compact('remotas','clientes'));
+    return view('remotas.remotas_search',compact('remotas'));
         }
 
     public function monitoreo()
     {
-       return view("remotas.remotas_monitoreo");
+    // Create an instance of PingCommand
+    $command = (new PingCommandBuilder('181.199.140.149'))->count(10)->packetSize(32)->ttl(0);
+
+    // Pass the PingCommand instance to Ping and run...
+    $ping = (new Ping($command))->run();
+
+    dd($ping);
+    $remotas = Remota::all()->sortBy('id_remota');
+
+       return view('remotas.remotas_monitoreo',compact('remotas'));
     }
 
     /**
