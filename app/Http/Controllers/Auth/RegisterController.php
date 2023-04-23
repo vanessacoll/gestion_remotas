@@ -81,7 +81,7 @@ class RegisterController extends Controller
     }
 
 
-    // Añadidos
+    // A単adidos
 
 
      /**
@@ -102,21 +102,22 @@ class RegisterController extends Controller
 
     public function search(){
 
-    
+
      $data = Model_has_roles::where('model_id',Auth::User()->id)->first();
      $val  = Role::where('id',$data->role_id)->first();
-           
-        if ($val->name <> 'Soporte u Operaciones') {
-  
-        $users = User::where('id',Auth::User()->id)->get();
-    
-        }else{
+
+        if ($val->name === 'Soporte u Operaciones') {
+
 
         $users = User::all() ->sortBy('id');
 
+
+        }else{
+
+            $users = User::where('id',Auth::User()->id)->get();
         }
 
-        
+
         $roles = Role::select()->get();
         $model_has_roles = Model_has_roles::select()->get();
         return view('auth.register_search',compact('users','roles','model_has_roles'));
@@ -134,7 +135,7 @@ class RegisterController extends Controller
      $data = Model_has_roles::where('model_id',Auth::User()->id)->first();
      $val  = Role::where('id',$data->role_id)->first();
 
-        $roles = Role::select()->get(); 
+        $roles = Role::select()->get();
         $model_has_roles = Model_has_roles::select()->get();
         return view("auth.register_edit", ['user' => $user],compact('roles','model_has_roles','val'));
     }
@@ -150,21 +151,21 @@ class RegisterController extends Controller
     public function update(Request $request, User $user)
     {
         $this->validator($request->all())->validate();
-        
+
 
     $data1 = Model_has_roles::where('model_id',Auth::User()->id)->first();
     $val  = Role::where('id',$data1->role_id)->first();
 
         if ($val->name <> 'Soporte u Operaciones') {
-  
+
         $user->password = Hash::make($request->password);
         $user->saveOrFail();
-    
+
         }else{
 
         $data = Model_has_roles::where('model_id',$user->id)->first();
         $role = Role::where('id',$data->role_id)->first();
-        
+
         $user->username = $request->name;
         $user->email    = $request->email;
         $user->nombres  = $request->nombres;
@@ -174,7 +175,7 @@ class RegisterController extends Controller
         $user->removeRole($role->name);
         $user->assignRole($request->name_role);
         }
-     
+
     return redirect()->route("register.search")->with(["message" => "Usuario actualizado exitosamente"]);
     }
 

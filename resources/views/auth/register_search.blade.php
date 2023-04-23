@@ -57,11 +57,11 @@
                         <td class="align-middle text-end">
                           <div class="dropdown font-sans-serif position-static d-inline-block btn-reveal-trigger"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal dropdown-caret-none float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--1"></span></button>
                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
-                              
-                              @can('editar_usuarios')
-                              <a class="dropdown-item" href="{{route("register.edit",['user' => $user->id])}}">Editar</a>      
-                              @endcan 
-                              
+
+                             @can('editar_usuarios')
+                              <a class="dropdown-item" href="{{route("register.edit",['user' => $user->id])}}">Editar</a>
+                              @endcan
+
 
                               @can('borrar_usuarios')
 
@@ -73,16 +73,16 @@
                                   @csrf
                                </form>
 
-                              @endcan 
-                           
+                              @endcan
+
                             </div>
                           </div>
                         </td>
-                    
-            
-                @endif  
-            </tr>     
-                
+
+
+                @endif
+            </tr>
+
             @endforeach
             @endforeach
           @endforeach
@@ -105,5 +105,5 @@
     </div>
   </div>
 </div>
-  
+
 @endsection

@@ -11,6 +11,10 @@
 
 @include('themes.template_dark.messages')
 
+
+@include('themes.template_dark.alert')
+
+
 <div class="col-12">
   <div class="card" id="table" data-list='{"valueNames":["path","name","address","phone","mail","status","type"],"page":10,"pagination":true,"fallback":"pages-table-fallback"}'>
     <div class="card-header">
@@ -18,8 +22,13 @@
         <div class="col-auto col-sm-6 col-lg-7">
           @can('registrar_planes')
           <a class="btn btn-falcon-default btn-md"  href="{{route("planes.create")}}">
-            <span class="fas fa-cloud-download-alt"></span>
-            <span class="d-none d-md-inline">Agregar</span>
+            <span class="fas fa-cloud-download-alt me-md-1"></span>
+            <span class="d-none d-md-inline">Agregar Plan</span>
+          </a>
+           @else
+          <a class="btn btn-falcon-default btn-md" href="#" disabled>
+            <span class="fas fa-cloud-download-alt me-md-1"></span>
+            <span class="d-none d-md-inline">Agregar Plan</span>
           </a>
           @endcan
         </div>
@@ -52,21 +61,23 @@
                           <div class="dropdown font-sans-serif position-static d-inline-block btn-reveal-trigger"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal dropdown-caret-none float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--1"></span></button>
                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
                               
-                              @can('editar_planes')
+                              @can('editar_plane3')
                               <a class="dropdown-item" href="{{route("planes.edit",['plan' => $plan->id_plan])}}">Editar</a>      
-                              @endcan 
+                              @else 
+                              <a class="dropdown-item" id="liveToastBtn" href="javascript:void(0);" disabled>
+                                Editar
+                              </a>
+                              @endcan
 
                               @can('borrar_planes')
 
-                              <a class="dropdown-item text-danger" action="{{route("planes.destroy", ['plan' => $plan->id_plan])}}"  onclick="event.preventDefault();
-                                document.getElementById('delete-form').submit();">Borrar</a>
-                             
-                               <form id="delete-form" action="{{route("planes.destroy", ['plan' => $plan->id_plan])}}"  method="get">
-                                @method("delete")
-                                  @csrf
-                               </form>
+                               <a class="dropdown-item text-danger" href="{{route("planes.destroy", ['plan' => $plan->id_plan])}}">Borrar</a>
 
-                              @endcan 
+                               @else
+                              <a class="dropdown-item text-danger" id="liveToastBtn" href="javascript:void(0);" disabled>
+                                Borrar
+                              </a>
+                              @endcan
                            
                             </div>
                           </div>

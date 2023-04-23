@@ -22,12 +22,12 @@
     <div class="card-body bg-light">
       <div class="tab-content">
         <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
-          <form class="row g-3 needs-validation"  method="GET" action="{{route("planes.store")}}">
+          <form class="row g-3 needs-validation" novalidate=""  method="GET" action="{{route("planes.store")}}">
             @csrf
             <div class="col-md-12">
-              <label class="form-label" for="nombres">Nombres</label>
-              <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingrese Nombres" required="" />
-              <div class="invalid-feedback">Debe ingresar nombres.</div>
+              <label class="form-label" for="nombres">Plan</label>
+              <input class="form-control" id="nombre" name="nombre" type="text" placeholder="Ingrese Nombre del Plan" required="" />
+              <div class="invalid-feedback">Debe ingresar nombre del Plan.</div>
             </div>         
             <div class="col-12">  
              <div class="row flex-between-center">

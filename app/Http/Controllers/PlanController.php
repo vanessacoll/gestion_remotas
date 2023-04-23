@@ -103,7 +103,8 @@ class PlanController extends Controller
         if ($remotas === null && $hisremotas === null) {
   
         $plan->delete();
-        return redirect()->route("planes.index")->with(["message" => "Plan eliminado"]);
+
+        return redirect()->route("planes.index")->with(["message" => "Plan eliminado exitosamente"]);
     
         }else{
 
