@@ -20,14 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
-   echo Artisan::call('config:clear');
-   echo Artisan::call('config:cache');
-   echo Artisan::call('cache:clear');
-   echo Artisan::call('route:clear');
-   echo Artisan::call('permission:cache-reset');
-})->name('home');
+ 
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
+    echo Artisan::call('config:clear');
+    echo Artisan::call('config:cache');
+    echo Artisan::call('cache:clear');
+    echo Artisan::call('route:clear');
+    echo Artisan::call('permission:cache-reset');
+    })->name('home');
 
 // Rutas del Controlador de Contenciones
 
@@ -147,8 +147,6 @@ Route::get('/remotassearchlis/{request}/listado', [App\Http\Controllers\RemotaCo
 Route::get('/listadoes',[App\Http\Controllers\ReportesController::class, 'index'])->name('listadoes.index');
 
 Route::get('/listadoespdf',[App\Http\Controllers\ReportesController::class, 'generar'])->name('listadoespdf.index');
-
-Route::post('/listadoescombo',[App\Http\Controllers\ReportesController::class, 'bytipcliente'])->name('reporte');
 
 Route::get('/estacionescli', [App\Http\Controllers\ReportesController::class, 'index2'])->name('estacionescli.index');
 

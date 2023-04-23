@@ -12,7 +12,7 @@
     <!--    Favicons-->
     <!-- ===============================================-->
     <link rel="shortcut icon" sizes="192x192" href="{{ asset('/assets/images/logo.png') }}">
-
+    <meta name="theme-color" content="#ffffff">
     <script src="{{asset("assets/template_dark/js/config.js")}}"></script>
     <script src="{{asset("assets/template_dark/js/simplebar.min.js")}}"></script>
 
@@ -44,5 +44,4 @@
         userLinkRTL.setAttribute('disabled', true);
       }
     </script>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
   </head>
