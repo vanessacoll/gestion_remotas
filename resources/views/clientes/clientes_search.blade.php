@@ -72,14 +72,8 @@
 
                               @can('borrar_clientes')
 
-                              <a class="dropdown-item text-danger" href="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}" onclick="event.preventDefault();
-                                document.getElementById('delete-form').submit();">Borrar</a>
+                              <a class="dropdown-item text-danger" href="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}">Borrar</a>
                              
-                               <form id="delete-form" action="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}" method="get">
-                                @method("delete")
-                                  @csrf
-                               </form>
-
                               @endcan 
                            
                             </div>

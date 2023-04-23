@@ -25,7 +25,7 @@
     <div class="card-body bg-light">
       <div class="tab-content">
         <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-38a32f7e-f5bc-4ab8-b418-b5669185d206" id="dom-38a32f7e-f5bc-4ab8-b418-b5669185d206">
-          <form class="row g-3 needs-validation"  method="GET" action="{{route("planes.update",['plan' => $plan->id_plan])}}">
+          <form class="row g-3 needs-validation" novalidate=""  method="GET" action="{{route("planes.update",['plan' => $plan->id_plan])}}">
 
            
             @csrf
@@ -33,9 +33,9 @@
             <input value="{{$plan->id_plan}}"  name="id_plan"  type="text" hidden>
 
             <div class="col-md-12">
-              <label class="form-label" for="nombres">Nombres</label>
+              <label class="form-label" for="nombres">Plan</label>
               <input class="form-control" value="{{$plan->des_plan}}" id="nombre" name="nombre" type="text" required="" />
-              <div class="invalid-feedback">Debe ingresar nombres.</div>
+              <div class="invalid-feedback">Debe ingresar nombre del Plan.</div>
             </div>   
 
             <div class="col-12">  
