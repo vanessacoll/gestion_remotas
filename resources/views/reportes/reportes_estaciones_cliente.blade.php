@@ -39,7 +39,7 @@
 
 <div class="col-12">
   <label for="clientes">Cliente</label>
-  <select class="form-select" name="cliente" id="cliente">
+  <select class="form-select js-basic-single" name="cliente" id="cliente">
     <option>Seleccione</option>
   </select>
   </div>

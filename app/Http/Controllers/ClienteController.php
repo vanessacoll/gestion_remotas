@@ -134,7 +134,7 @@ class ClienteController extends Controller
         if ($remotas === null && $hisremotas === null) {
   
         $cliente->delete();
-        return redirect()->route("clientes.search")->with(["message" => "cliente eliminado"]);
+        return redirect()->route("clientes.search")->with(["message" => "Cliente eliminado exitosamente"]);
     
         }else{
 
@@ -144,7 +144,7 @@ class ClienteController extends Controller
      }
 
 
-       protected function validator(array $cliente)
+    protected function validator(array $cliente)
     {
         return Validator::make($cliente, [
   'cedula'     => ['string', 'max:12'],

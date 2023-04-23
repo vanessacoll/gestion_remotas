@@ -12,8 +12,10 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
     <script src="{{asset("assets/template_dark/js/list.min.js")}}"></script>
     <script src="{{asset("assets/template_dark/js/theme.js")}}"></script>
-    <script src="{{asset("assets/template_dark/js/choices.min.js")}}"></script>
+    {{-- <scriptsrc="{{asset("assets/template_dark/js/choices.min.js") }}"></script>--}}
     <script src="{{asset("assets/template_dark/js/jquery-3.6.0.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/js/select2.min.js")}}"></script>
+    <script src="{{asset("assets/template_dark/inputmask/jquery.inputmask.min.js")}}"></script>
 
 
     <script type="text/javascript">
@@ -43,3 +45,13 @@
          });
         });
         </script>
+
+<script>
+$(document).ready(function() {
+
+    $('.js-basic-single').select2();
+
+    $('[data-mask]').inputmask()
+
+});
+</script>

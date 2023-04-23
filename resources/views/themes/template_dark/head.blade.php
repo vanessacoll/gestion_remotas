@@ -24,7 +24,8 @@
     <link href="{{asset("assets/template_dark/css/simplebar.min.css")}}" rel="stylesheet">
     <link href="{{asset("assets/template_dark/css/theme-rtl.min.css")}}" rel="stylesheet" id="style-rtl">
     <link href="{{asset("assets/template_dark/css/theme.min.css")}}" rel="stylesheet" id="style-default">
-    <link href="{{asset("assets/template_dark/css/choices.min.css")}}" rel="stylesheet">
+    {{--<link href="{{asset("assets/template_dark/css/choices.min.css")}}" rel="stylesheet">--}}
+    <link href="{{asset("assets/template_dark/css/select2.min.css")}}" rel="stylesheet">
     <link href="{{asset("assets/template_dark/css/prism-okaidia.css")}}" rel="stylesheet">
     <link href="../assets/css/user-rtl.min.css" rel="stylesheet" id="user-style-rtl">
     <link href="../assets/css/user.min.css" rel="stylesheet" id="user-style-default">
