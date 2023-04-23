@@ -47,7 +47,7 @@
             </div>
             <div class="col-6">
               <label class="form-label" for="telefono">Telefono</label>
-              <input class="form-control" name="telefono" id="telefono" type="text" placeholder="Ingrese Nro de Telefono" required="" />
+              <input class="form-control" data-inputmask='"mask": "(9999) 999-9999"' data-mask name="telefono" id="telefono" type="text" placeholder="Ingrese Nro de Telefono" required="" />
               <div class="invalid-feedback">Debe ingresar telefono.</div>
             </div>
             <div class="col-md-6">
@@ -62,14 +62,14 @@
             </div>
             <div class="col-md-6">
               <label class="form-label" for="id_tipcli">Tipo de Cliente</label>
-              <select class="form-select" name="id_tipcli" id="id_tipcli" required="">
+              <select class="form-select js-basic-single" name="id_tipcli" id="id_tipcli" required="">
                 <option value="">Seleccione</option>
                 @foreach($tip_clientes as $tip_cliente)
                 <option value="{{$tip_cliente->id_tip}}">  {{$tip_cliente->des_tip}}</option>
                 @endforeach
               </select>
               <div class="invalid-feedback">Debe seleccionar tipo de cliente.</div>
-            </div>           
+            </div>
 
               <div class="col-12">
                 <div class="row flex-between-center">
@@ -77,7 +77,7 @@
                 <div class="col-auto"><a class="fs--1 font-sans-serif" href="{{route("clientes.search")}}">Cerrar</a></div>
                 </div>
               </div>
-          
+
           </form>
         </div>
       </div>
