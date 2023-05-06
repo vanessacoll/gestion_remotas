@@ -61,10 +61,10 @@
                           <div class="dropdown font-sans-serif position-static d-inline-block btn-reveal-trigger"><button class="btn btn-link text-600 btn-sm dropdown-toggle btn-reveal dropdown-caret-none float-end" type="button" id="dropdown0" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true" aria-expanded="false" data-bs-reference="parent"><span class="fas fa-ellipsis-h fs--1"></span></button>
                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
                               
-                              @can('editar_plane3')
+                              @can('editar_planes')
                               <a class="dropdown-item" href="{{route("planes.edit",['plan' => $plan->id_plan])}}">Editar</a>      
-                              @else 
-                              <a class="dropdown-item" id="liveToastBtn" href="javascript:void(0);" disabled>
+                              @else
+                              <a class="dropdown-item"  href="javascript:void(0);" onclick="mostrarAlerta();" disabled>
                                 Editar
                               </a>
                               @endcan
@@ -74,7 +74,7 @@
                                <a class="dropdown-item text-danger" href="{{route("planes.destroy", ['plan' => $plan->id_plan])}}">Borrar</a>
 
                                @else
-                              <a class="dropdown-item text-danger" id="liveToastBtn" href="javascript:void(0);" disabled>
+                              <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="mostrarAlerta();"disabled>
                                 Borrar
                               </a>
                               @endcan
