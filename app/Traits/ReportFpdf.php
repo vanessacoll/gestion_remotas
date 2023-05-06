@@ -2,6 +2,8 @@
 
 namespace App\Traits;
 
+use Fpdf;
+
 trait ReportFpdf
 {
 	/****************************************************************

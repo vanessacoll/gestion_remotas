@@ -35,6 +35,7 @@
             id_tip: id_tip
             },
             success:function (data) {
+                alert(data.clientes[0].cedula);
          $('#cliente').empty();
          $('#cliente').append('<option>Seleccione</option>');
             for (var i=0; i<data.clientes.length; i++){
@@ -55,3 +56,14 @@ $(document).ready(function() {
 
 });
 </script>
+
+<script>
+  function mostrarAlerta() {
+    var alerta = document.getElementById("alerta");
+    alerta.style.display = "block";
+    setTimeout(function() {
+      alerta.style.display = "none";
+    }, 6000); // La alerta desaparecerá después de 6 segundos
+  }
+</script>
+

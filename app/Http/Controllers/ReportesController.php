@@ -121,8 +121,6 @@ public function generar()
 
 public function bytipcliente(Request $request){
 
-
-
        $clientes = Cliente::where('id_tipcli',$request->id_tip)->get();
         return response()->json(
             [
