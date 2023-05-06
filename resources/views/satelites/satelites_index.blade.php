@@ -64,14 +64,11 @@
 
                               @can('borrar_satelites')
 
-                              <a class="dropdown-item text-danger" action="{{route("satelites.destroy", ['satelite' => $satelite->id_satelite])}}" onclick="event.preventDefault();
-                                document.getElementById('delete-form').submit();">Borrar</a>
-
-                               <form id="delete-form" action="{{route("satelites.destroy", ['satelite' => $satelite->id_satelite])}}"  method="get">
-                                @method("delete")
-                                  @csrf
-                               </form>
-
+                              <a class="dropdown-item text-danger" href="{{route("satelites.destroy", ['satelite' => $satelite->id_satelite])}}">Borrar</a>
+                              @else
+                              <a class="dropdown-item text-danger" id="liveToastBtn" href="javascript:void(0);" disabled>
+                                Borrar
+                              </a>
                               @endcan 
                            
                             </div>

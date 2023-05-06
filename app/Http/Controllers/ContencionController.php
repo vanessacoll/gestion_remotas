@@ -100,7 +100,7 @@ class ContencionController extends Controller
 
     $remotas = Remota::where('id_contencion',$contencion->id_contencion)->first();
     $hisremotas = Historico_Remota::where('id_contencion',$contencion->id_contencion)->first();
-        
+
         if ($remotas === null && $hisremotas === null) {
   
         $contencion->delete();

@@ -56,15 +56,13 @@
                               @endcan 
                               
                               @can('borrar_contenciones')
-                              <a class="dropdown-item text-danger" action="{{route("contenciones.destroy", ['contencion' => $contencion->id_contencion])}}" onclick="event.preventDefault();
-                                document.getElementById('delete-form').submit();">Borrar</a>                  
-                               <form id="delete-form" action="{{route("contenciones.destroy", ['contencion' => $contencion->id_contencion])}}"  method="get">
-                                @method("delete")
-                                  @csrf
-                               </form>
-
+                              <a class="dropdown-item text-danger" href="{{route("contenciones.destroy",['contencion' => $contencion->id_contencion])}}">Borrar</a>   
+                              @else
+                              <a class="dropdown-item text-danger" id="liveToastBtn" href="javascript:void(0);" disabled>
+                                Borrar
+                              </a>
                               @endcan 
-                           
+                              
                             </div>
                           </div>
                         </td>

@@ -31,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
 
 // Rutas del Controlador de Contenciones
 
+Route::get('/reporte', [App\Http\Controllers\ReportesController::class, 'bytipcliente'])->name('reporte');
+
 Route::get('/contencioneslis', [App\Http\Controllers\ContencionController::class, 'index'])->name('contenciones.index');
 
 Route::get('/contenciones/nuevo',[App\Http\Controllers\ContencionController::class, 'create'])
