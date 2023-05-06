@@ -20,7 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
- 
+
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'], function () {
     echo Artisan::call('config:clear');
     echo Artisan::call('config:cache');
@@ -151,6 +151,8 @@ Route::get('/listadoespdf',[App\Http\Controllers\ReportesController::class, 'gen
 Route::get('/estacionescli', [App\Http\Controllers\ReportesController::class, 'index2'])->name('estacionescli.index');
 
 Route::get('/estacionesclirep', [App\Http\Controllers\ReportesController::class, 'search'])->name('estacionescli.search');
+
+Route::get('/reporte', [App\Http\Controllers\ReportesController::class, 'bytipcliente'])->name('reporte');
 
 
 // Rutas para el controlador de registro de usuarios

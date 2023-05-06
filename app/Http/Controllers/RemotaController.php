@@ -15,6 +15,7 @@ use App\Models\Tip_cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\Process\Process;
 
 
 class RemotaController extends Controller
@@ -44,7 +45,36 @@ class RemotaController extends Controller
 
     public function monitoreo()
     {
-       return view("remotas.remotas_monitoreo");
+
+     // $remotas = Remota::all()->sortBy('id_remota');
+     // 
+     $remotas = Remota::whereIn('id_status' , [1,5])->take(5)->get();;
+
+      foreach ($remotas as $remota) {
+
+    if (!$remota->direccion) {
+
+            $remota->respuesta_ping = 'No tiene direccion IP asignada';
+            $remota->clase = 'status-offline';
+
+    }else{
+       
+        $process = new Process(['/sbin/ping', '-c', '3', $remota->direccion]);
+        $process->run();
+        
+        if ($process->isSuccessful()) {
+            $output = $process->getOutput();
+            $remota->respuesta_ping = $output;
+            $remota->clase = 'status-online';
+        } else {
+            $error = $process->getErrorOutput();
+            $remota->respuesta_ping = $error;
+            $remota->clase = 'status-away';
+        }
+    }
+}
+
+       return view("remotas.remotas_monitoreo", compact('remotas'));
     }
 
     /**
