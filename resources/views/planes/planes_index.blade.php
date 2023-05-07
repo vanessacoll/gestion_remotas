@@ -62,6 +62,7 @@
                             <div class="dropdown-menu dropdown-menu-end border py-2" aria-labelledby="dropdown0">
                               
                               @can('editar_planes')
+                              
                               <a class="dropdown-item" href="{{route("planes.edit",['plan' => $plan->id_plan])}}">Editar</a>      
                               @else
                               <a class="dropdown-item"  href="javascript:void(0);" onclick="mostrarAlerta();" disabled>

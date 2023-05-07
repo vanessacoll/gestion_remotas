@@ -67,3 +67,14 @@ $(document).ready(function() {
   }
 </script>
 
+
+<script>
+  var direccionInput = document.getElementById('direccion');
+
+  direccionInput.addEventListener('input', function() {
+    var inputValue = direccionInput.value;
+    var filteredValue = inputValue.replace(/[^0-9.]/g, '');
+
+    direccionInput.value = filteredValue;
+  });
+</script>

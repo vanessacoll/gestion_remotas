@@ -17,7 +17,10 @@ class PermissionsTableSeeder extends Seeder
      */
     public function run()
     {
-       //Permission list
+     
+     
+     /*
+        //Permission list
         Permission::create(['name' => 'registrar_usuarios']);
         Permission::create(['name' => 'clientes']);
         Permission::create(['name' => 'registrar_clientes']);
@@ -78,14 +81,18 @@ class PermissionsTableSeeder extends Seeder
             'editar_usuarios',
             'borrar_usuarios'
         ]);
+*/
+
         //$admin->givePermissionTo('products.index');
         //$admin->givePermissionTo(Permission::all());
         
         //User Admin
-        $user = User::find(1); //Ruben Mendoza
+        $user = User::find(8); //Ruben Mendoza
         $user->assignRole('Soporte u Operaciones');
 
         //Cliente O Reseller
+/* 
+ 
         $cliente = Role::create(['name' => 'Cliente o Reseller']);
 
         $cliente->givePermissionTo([
@@ -112,8 +119,9 @@ class PermissionsTableSeeder extends Seeder
             'editar_usuarios'
         ]);
 
-       
+       */ 
     }
+   
 }
 
 

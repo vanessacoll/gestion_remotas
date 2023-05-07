@@ -11,6 +11,8 @@
 
 @include('themes.template_dark.messages')
 
+@include('themes.template_dark.alert')
+
 <div class="col-12">
   <div class="card" id="table" data-list='{"valueNames":["path","name","address","phone","mail","status","type"],"page":10,"pagination":true,"fallback":"pages-table-fallback"}'>
     <div class="card-header">
@@ -53,12 +55,16 @@
                               
                               @can('editar_contenciones')
                               <a class="dropdown-item" href="{{route("contenciones.edit",['contencion' => $contencion->id_contencion])}}">Editar</a>      
+                              @else
+                              <a class="dropdown-item"  href="javascript:void(0);" onclick="mostrarAlerta();" disabled>
+                                Editar
+                              </a>
                               @endcan 
                               
                               @can('borrar_contenciones')
                               <a class="dropdown-item text-danger" href="{{route("contenciones.destroy",['contencion' => $contencion->id_contencion])}}">Borrar</a>   
                               @else
-                              <a class="dropdown-item text-danger" id="liveToastBtn" href="javascript:void(0);" disabled>
+                              <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="mostrarAlerta();"disabled>
                                 Borrar
                               </a>
                               @endcan 

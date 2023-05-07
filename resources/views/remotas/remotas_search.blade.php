@@ -11,6 +11,8 @@
 
 @include('themes.template_dark.messages')
 
+@include('themes.template_dark.alert')
+
 <div class="col-12">
   <div class="card" id="table" data-list='{"valueNames":["cliente","serial","remota","address","plan","contencion","satelite","status"],"page":10,"pagination":true,"fallback":"pages-table-fallback"}'>
     <div class="card-header">
@@ -72,17 +74,18 @@
                               
                               @can('editar_remotas')
                               <a class="dropdown-item" href="{{route("remotas.edit",['remota' => $remota->id_remota])}}">Editar</a>
+                              @else
+                              <a class="dropdown-item"  href="javascript:void(0);" onclick="mostrarAlerta();" disabled>
+                                Editar
+                              </a>
                               @endcan 
 
                               @can('borrar_remotas')
-                              <a class="dropdown-item text-danger" href="{{route("remotas.destroy", ['remota' => $remota->id_remota])}}" onclick="event.preventDefault();
-                                document.getElementById('delete-form').submit();">Borrar</a>
-                             
-                               <form id="delete-form" action="{{route("remotas.destroy", ['remota' => $remota->id_remota])}}" method="get">
-                                @method("delete")
-                                  @csrf
-                               </form>
-
+                              <a class="dropdown-item text-danger" href="{{route("remotas.destroy", ['remota' => $remota->id_remota])}}">Borrar</a>
+                                @else
+                                <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="mostrarAlerta();"disabled>
+                                  Borrar
+                                </a>
                               @endcan 
                            
                             </div>

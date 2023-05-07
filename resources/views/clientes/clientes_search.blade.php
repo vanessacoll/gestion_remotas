@@ -9,6 +9,9 @@
   </div>
 </div>
 
+
+@include('themes.template_dark.alert')
+
 @include('themes.template_dark.messages')
 
 <div class="col-12">
@@ -68,12 +71,19 @@
                               
                               @can('editar_clientes')
                               <a class="dropdown-item" href="{{route("clientes.edit",['cliente' => $cliente->id_cliente])}}">Editar</a>
+                              @else
+                              <a class="dropdown-item"  href="javascript:void(0);" onclick="mostrarAlerta();" disabled>
+                                Editar
+                              </a>
                               @endcan 
 
                               @can('borrar_clientes')
 
                               <a class="dropdown-item text-danger" href="{{route("clientes.destroy", ['cliente' => $cliente->id_cliente])}}">Borrar</a>
-                             
+                              @else
+                              <a class="dropdown-item text-danger" href="javascript:void(0);" onclick="mostrarAlerta();"disabled>
+                                Borrar
+                              </a>
                               @endcan 
                            
                             </div>
