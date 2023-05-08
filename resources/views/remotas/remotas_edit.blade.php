@@ -31,7 +31,7 @@
                 @csrf
             <div class="col-12">
               <label for="organizerSingle">Cliente</label>
-              <select class="form-select js-choice" name="id_cliente" id="organizerSingle" size="1" name="organizerSingle" data-options='{"removeItemButton":true,"placeholder":true}' required="">
+              <select class="form-select js-basic-single" name="id_cliente" id="organizerSingle" size="1" name="organizerSingle" data-options='{"removeItemButton":true,"placeholder":true}' required="">
                 <option value="">Seleccione</option>
                 @foreach($clientes as $cliente)
                 <option value="{{$cliente->id_cliente}}"  @if( $cliente->id_cliente === $remota->id_cliente) selected='selected' @endif >  {{$cliente->cedula}} - {{$cliente->nombres}} </option>
@@ -101,7 +101,7 @@
                     
             <div class="col-md-6">
               <label class="form-label" for="id_plan">Plan</label>
-              <select class="form-select js-choice" name="id_plan" id="id_plan" required="">
+              <select class="form-select js-basic-single" name="id_plan" id="id_plan" required="">
                 <option value="">Seleccione</option>
                 @foreach($planes as $plan)
                 <option value="{{$plan->id_plan}}" @if( $plan->id_plan === $remota->id_plan) selected='selected' @endif >  {{$plan->des_plan}}
@@ -112,7 +112,7 @@
             </div>
             <div class="col-md-6">
               <label class="form-label" for="id_contencion">Contencion</label>
-              <select class="form-select js-choice" name="id_contencion" id="id_contencion" required="">
+              <select class="form-select js-basic-single" name="id_contencion" id="id_contencion" required="">
                 <option value="">Seleccione</option>
                 @foreach($contenciones as $contencion)
                  <option value="{{$contencion->id_contencion}}" @if( $contencion->id_contencion === $remota->id_contencion) selected='selected' @endif >  {{$contencion->des_contencion}}</option>
@@ -123,7 +123,7 @@
 
             <div class="col-md-6">
               <label class="form-label" for="id_satelite">Satelite</label>
-              <select class="form-select js-choice" name="id_satelite" id="id_satelite" required="">
+              <select class="form-select js-basic-single" name="id_satelite" id="id_satelite" required="">
                 <option value="">Seleccione</option>
                 @foreach($satelites as $satelite)
                 <option value="{{$satelite->id_satelite}}" @if( $satelite->id_satelite === $remota->id_satelite) selected='selected' @endif >  {{$satelite->des_satelite}}</option>
@@ -133,7 +133,7 @@
             </div>   
             <div class="col-md-6">
               <label class="form-label" for="id_status">Estatus</label>
-              <select class="form-select js-choice" name="id_status" id="id_status" required="">
+              <select class="form-select js-basic-single" name="id_status" id="id_status" required="">
                 <option value="">Seleccione</option>
                 @foreach($statuss as $status)
                 <option value="{{$status->id_status}}" @if( $remota->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}
@@ -144,7 +144,7 @@
             </div> 
             <div class="col-md-12">
               <label class="form-label" for="id_just">Justificacion</label>
-              <select class="form-select js-choice" name="id_just" id="id_just" required="">
+              <select class="form-select js-basic-single" name="id_just" id="id_just" required="">
                 <option value="">Seleccione</option>
                 <option value="">Seleccione</option>
                @foreach($justificaciones as $justificacion)

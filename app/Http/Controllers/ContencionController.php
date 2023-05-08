@@ -104,7 +104,7 @@ class ContencionController extends Controller
         if ($remotas === null && $hisremotas === null) {
   
         $contencion->delete();
-         return redirect()->route("contenciones.index")->with(["message" => "Contencion eliminada"]);
+         return redirect()->route("contenciones.index")->with(["message" => "Contencion eliminada exitosamente"]);
     
         }else{
 

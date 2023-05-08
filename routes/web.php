@@ -152,7 +152,10 @@ Route::get('/estacionescli', [App\Http\Controllers\ReportesController::class, 'i
 
 Route::get('/estacionesclirep', [App\Http\Controllers\ReportesController::class, 'search'])->name('estacionescli.search');
 
-Route::get('/reporte', [App\Http\Controllers\ReportesController::class, 'bytipcliente'])->name('reporte');
+
+
+Route::get('/getbytip', [App\Http\Controllers\ReportesController::class, 'getClientesByTipo'])->name('clientes.getbytip');
+
 
 
 // Rutas para el controlador de registro de usuarios

@@ -17,4 +17,14 @@
      </div>
 
     </div>     
+
+@elseif(Session::has('messageerror'))
+    <div class="col-md-12">
+
+     <div class="alert alert-danger alert-dismissible fade show" role="alert">
+         {{ Session::get('messageerror') }}</h4>
+         <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+     </div>
+
+    </div>     
 @endif

@@ -23,12 +23,12 @@
     <div class="card-body bg-light">
       <div class="tab-content">
         <div class="tab-pane preview-tab-pane active" role="tabpanel" aria-labelledby="tab-dom-41c7dce5-cab3-4edd-ac39-b1d15cf196cf" id="dom-41c7dce5-cab3-4edd-ac39-b1d15cf196cf">
-          <form class="row g-3 needs-validation" novalidate="" method="GET" action="{{route("estacionescli.search")}}">
+          <form class="row g-3 needs-validation" novalidate="" method="GET" action="{{route("estacionescli.search")}}"target="_blank">
             @csrf
 
 <div class="col-12">
 <label for="tipo_cliente">Tipo de Cliente</label>
-<select class="form-select js-choice" name="id_tip" id="tipo_cliente" size="1" data-options='{"removeItemButton":true,"placeholder":true}' required="">
+<select class="form-select js-basic-single" name="tipo_cliente" id="tipo_cliente" size="1" required="">
   <option value="">Seleccione</option>
   @foreach($tip_clientes as $tip_cliente)
      <option value="{{$tip_cliente->id_tip}}">  {{$tip_cliente->des_tip}}</option>

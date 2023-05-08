@@ -9,7 +9,17 @@
   </div>
 </div>
 
-@include('themes.template_dark.messages')
+
+<div class="col-xxl-2 col-xl-2">
+
+        <div class="d-flex">
+              
+           <a href="{{ route('remotas.index2') }}" class="btn btn-falcon-default d-none bg-light d-sm-block me-2">
+              <span class="d-none d-xl-inline-block ms-1">Volver</span>
+           </a>
+        
+         </div>
+</div>
 
 <div class="col-12">
   <div class="card" id="table" data-list='{"valueNames":["name","serial","model","locale","address","status"],"page":10,"pagination":true,"fallback":"pages-table-fallback"}'>
