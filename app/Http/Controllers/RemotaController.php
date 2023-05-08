@@ -48,7 +48,7 @@ class RemotaController extends Controller
 
      // $remotas = Remota::all()->sortBy('id_remota');
      // 
-     $remotas = Remota::whereIn('id_status' , [1,5])->take(5)->get();;
+     $remotas = Remota::whereIn('id_remota' ,[1,2])->get();;
 
       foreach ($remotas as $remota) {
 
@@ -72,6 +72,9 @@ class RemotaController extends Controller
             $remota->clase = 'status-away';
         }
     }
+
+    sleep(5);
+
 }
 
        return view("remotas.remotas_monitoreo", compact('remotas'));

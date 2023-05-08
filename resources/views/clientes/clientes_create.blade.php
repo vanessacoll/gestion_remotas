@@ -52,7 +52,7 @@
             </div>
             <div class="col-md-6">
               <label class="form-label" for="id_status">Estatus</label>
-              <select class="form-select" name="id_status" id="id_status" required="">
+              <select class="form-select js-basic-single" name="id_status" id="id_status" required="">
                 <option value="">Seleccione</option>
                 @foreach($statuss as $status)
                 <option value="{{$status->id_status}}">  {{$status->des_status}}</option>

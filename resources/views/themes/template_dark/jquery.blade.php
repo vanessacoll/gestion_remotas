@@ -18,34 +18,34 @@
     <script src="{{asset("assets/template_dark/inputmask/jquery.inputmask.min.js")}}"></script>
 
 
-    <script type="text/javascript">
-        $.ajaxSetup({
-            headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+<script type="text/javascript">     
 
-        $(document).ready(function () {
-         $('#tipo_cliente').on('change',function(e) {
-            var id_tip = e.target.value;
-            $.ajax({
-            url:"{{ route('reporte') }}",
-            type:"POST",
-            data: {
-            id_tip: id_tip
-            },
-            success:function (data) {
-                alert(data.clientes[0].cedula);
-         $('#cliente').empty();
-         $('#cliente').append('<option>Seleccione</option>');
-            for (var i=0; i<data.clientes.length; i++){
-                $('#cliente').append('<option value="'+data.clientes[i].cedula+'">'+data.clientes[i].cedula+'-'+data.clientes[i].nombres+'</option>');
-            }
-           }
-          })
-         });
+$(document).ready(function() {
+  const tipoCliente = $('#tipo_cliente');
+  const clienteSelect = $('#cliente');
+
+  tipoCliente.change(function() {
+
+    const selectedType = tipoCliente.val();
+    if (selectedType !== '') {
+     
+      $.get('{{ route("clientes.getbytip") }}', {id_tip: selectedType}, function(response) {
+        const clientes = response || [];
+        clienteSelect.empty().append('<option value="" selected>Seleccione</option>');
+        clientes.forEach(cliente => {
+          clienteSelect.append(`<option value="${cliente.cedula}">${cliente.nombres}</option>`);
         });
-        </script>
+      })
+      .fail(function(xhr) {
+        console.error(xhr.responseText);
+      });
+    } 
+  });
+});
+
+</script>
+
+
 
 <script>
 $(document).ready(function() {

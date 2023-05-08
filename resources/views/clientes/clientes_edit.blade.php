@@ -44,11 +44,11 @@
             </div>
             <div class="col-6">
               <label class="form-label" for="telefono">Telefono</label>
-              <input class="form-control" value="{{$cliente->telefono}}" name="telefono" id="telefono" type="text" />
+              <input class="form-control" value="{{$cliente->telefono}}" name="telefono" data-inputmask='"mask": "(9999) 999-9999"' data-mask  id="telefono" type="text" />
             </div>
             <div class="col-md-6">
               <label class="form-label" for="id_status">Estatus</label>
-              <select class="form-select" name="id_status" id="id_status">
+              <select class="form-select js-basic-single" name="id_status" id="id_status">
                 <option value="">Seleccione</option>
                 @foreach($statuss as $status)
                 <option value="{{$status->id_status}}" @if( $cliente->id_status === $status->id_status) selected='selected' @endif>  {{$status->des_status}}</option>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-md-6">
               <label class="form-label" for="id_tipcli">Tipo de Cliente</label>
-              <select class="form-select" name="id_tipcli" id="id_tipcli">
+              <select class="form-select js-basic-single" name="id_tipcli" id="id_tipcli">
                 <option value="">Seleccione</option>
                 @foreach($tip_clientes as $tip_cliente)
                 <option value="{{$tip_cliente->id_tip}}" @if( $cliente->id_tipcli === $tip_cliente->id_tip) selected='selected' @endif>  {{$tip_cliente->des_tip}}</option>

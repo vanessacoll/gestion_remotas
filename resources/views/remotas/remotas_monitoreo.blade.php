@@ -44,10 +44,10 @@
                        
                        <div class="d-flex align-items-center position-relative mb-3">
                         <div class="avatar avatar-2xl {{$remota->clase}}">
-                          <img class="rounded-circle" src="../assets/img/team/1.jpg" alt="" />
+                          <img class="rounded-circle" src="/assets/template_dark/img/router.jpeg" alt="" />
                         </div>
                         <div class="flex-1 ms-3">
-                          <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="../pages/user/profile.html">{{$remota->nombre}}</a></h6>
+                          <h6 class="mb-0 fw-semi-bold"><a class="stretched-link text-900" href="{{$remota->url}}">{{$remota->nombre}}</a></h6>
                           <p class="text-500 fs--2 mb-0">{{$remota->cliente->nombres}}</p>
                         </div>
                       </div>
